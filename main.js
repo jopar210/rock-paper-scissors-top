@@ -4,7 +4,12 @@ const getRandomNumber = function (max) {
 
 const getComputerChoice = function () {
   const options = ["Rock", "Paper", "Scissors"];
-  const answer = options[getRandomNumber(options.length)];
+  return options[getRandomNumber(options.length)];
 };
 
-getComputerChoice();
+const computerSelection = getComputerChoice();
+
+const userAnswer = prompt("Select an option ('Rock', 'Paper' or 'Scissors'): ");
+const userSelection = `${userAnswer[0].toUpperCase()}${userAnswer
+  .toLowerCase()
+  .slice(1)}`;
