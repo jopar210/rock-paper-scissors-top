@@ -1,3 +1,15 @@
 body {
-  background-color: #444;
+  background-color: #eee;
+}
+
+img {
+  width: 250px;
+  height: auto;
+}
+
+.options-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
