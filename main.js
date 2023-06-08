@@ -2,18 +2,33 @@ let playerCounter = 0;
 let computerCounter = 0;
 let numberOfRounds = 5;
 
+const body = document.querySelector("body");
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
+
+const playerSelectionDiv = document.createElement("div");
+body.appendChild(playerSelectionDiv);
+const computerSelectionDiv = document.createElement("div");
+body.appendChild(computerSelectionDiv);
+const checkRoundDiv = document.createElement("div");
+body.appendChild(checkRoundDiv);
+const finalResultsDiv = document.createElement("div");
+body.appendChild(finalResultsDiv);
 
 const resetGame = function () {
   playerCounter = 0;
   computerCounter = 0;
   numberOfRounds = 5;
+  playerSelectionDiv.textContent = "";
+  computerSelectionDiv.textContent = "";
+  checkRoundDiv.textContent = "";
 };
 
 const playRound = function (e) {
   numberOfRounds--;
+  finalResultsDiv.textContent = "";
+
   const getRandomNumber = function (max) {
     return Math.floor(Math.random() * max);
   };
@@ -49,9 +64,10 @@ const playRound = function (e) {
       return `You LOSE!! ${playerSelection} is not match for ${computerSelection} `;
     }
   };
-  alert(`You've chosen: ${playerSelection}`);
-  alert(`The computer has chosen: ${computerSelection}`);
-  alert(checkRound(computerSelection, playerSelection));
+
+  playerSelectionDiv.textContent = `You've chosen: ${playerSelection}`;
+  computerSelectionDiv.textContent = `The computer has chosen: ${computerSelection}`;
+  checkRoundDiv.textContent = checkRound(computerSelection, playerSelection);
 
   if (numberOfRounds === 0) {
     const checkFinalResults = function (playerCounter, computerCounter) {
@@ -69,7 +85,10 @@ const playRound = function (e) {
         COMPUTER - ${computerCounter}`;
       }
     };
-    alert(checkFinalResults(playerCounter, computerCounter));
+    finalResultsDiv.textContent = checkFinalResults(
+      playerCounter,
+      computerCounter
+    );
     resetGame();
   }
 };
